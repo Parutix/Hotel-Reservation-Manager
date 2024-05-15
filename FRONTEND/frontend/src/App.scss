@@ -39,3 +39,16 @@ body {
   font-size: 20px;
   cursor: pointer;
 }
+
+.search_button:hover {
+  background-color: darken($accent-color, 10%);
+}
+
+.search_results {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  width: 100%;
+}

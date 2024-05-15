@@ -34,4 +34,17 @@ body {
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.search_button:hover {
+  background-color: #5b6947;
+}
+
+.search_results {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  width: 100%;
 }/*# sourceMappingURL=App.css.map */
