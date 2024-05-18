@@ -7,6 +7,8 @@ function App() {
   const [radius, setRadius] = useState("");
   const [hotels, setHotels] = useState([]);
   const [message, setMessage] = useState("");
+  const [selectedHotelId, setSelectedHotelId] = useState(null);
+  const [rooms, setRooms] = useState([]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -46,6 +48,36 @@ function App() {
     }
   };
 
+  const getRooms = async (hotelId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:2911/hotels/gethotelrooms?hotel_id=${hotelId}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        if (data.length > 0) {
+          setRooms(data);
+          setMessage("");
+        } else {
+          setRooms([]);
+          setMessage("No rooms found for this hotel.");
+        }
+      } else {
+        setRooms([]);
+        setMessage("Failed to fetch rooms");
+      }
+    } catch (error) {
+      console.error("Error fetching rooms:", error);
+      setRooms([]);
+      setMessage("Error fetching rooms");
+    }
+  };
+
+  const handleHotelClick = (hotelId) => {
+    setSelectedHotelId(hotelId);
+    getRooms(hotelId);
+  };
+
   return (
     <div className="App">
       <div className="search_container">
@@ -64,11 +96,41 @@ function App() {
         <div className="result_container">
           {message && <div>{message}</div>}
           {hotels.length > 0 && (
-            <ul>
-              {hotels.map((hotel) => (
-                <li key={hotel.id}>{hotel.name}</li>
-              ))}
-            </ul>
+            <div className="hotels_and_rooms_container">
+              <div className="hotels_list">
+                <h3>Hotels</h3>
+                <ul>
+                  {hotels.map((hotel) => (
+                    <li
+                      key={hotel.id}
+                      onClick={() => handleHotelClick(hotel.id)}
+                    >
+                      {hotel.name}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {selectedHotelId && (
+                <div className="rooms_list">
+                  <h3>Rooms for Hotel ID: {selectedHotelId}</h3>
+                  <ul>
+                    {rooms.map((room, index) => (
+                      <li
+                        key={room.id}
+                        style={{
+                          backgroundColor: room.is_available ? "green" : "red",
+                          color: "white",
+                          padding: "10px",
+                          margin: "5px 0",
+                        }}
+                      >
+                        Room {index + 1}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
