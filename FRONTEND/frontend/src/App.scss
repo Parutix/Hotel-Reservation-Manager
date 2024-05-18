@@ -46,9 +46,33 @@ body {
 
 .search_results {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
   margin-top: 100px;
   width: 100%;
+}
+
+.search_results ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.search_results li {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.search_results li:hover {
+  background-color: #f0f0f0;
 }

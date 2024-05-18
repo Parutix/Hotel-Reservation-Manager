@@ -14,10 +14,10 @@ public class RoomJPA {
     @JoinColumn(name = "hotel_id", nullable = false)
     private HotelJPA hotel;
 
-    private int roomNumber;
-    private int type;
+    private int room_number;
+    private int room_type;
     private double price;
-    private boolean isAvailable;
+    private int is_available;
 
     public int getId() {
         return id;
@@ -35,20 +35,20 @@ public class RoomJPA {
         this.hotel = hotel;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getRoom_number() {
+        return room_number;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setRoom_number(int room_number) {
+        this.room_number = room_number;
     }
 
-    public int getType() {
-        return type;
+    public int getRoom_type() {
+        return room_type;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setRoom_type(int room_type) {
+        this.room_type = room_type;
     }
 
     public double getPrice() {
@@ -59,11 +59,11 @@ public class RoomJPA {
         this.price = price;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
+    public int getIs_available() {
+        return is_available;
     }
 
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+    public void setIs_available(int is_available) {
+        this.is_available = is_available;
     }
 }

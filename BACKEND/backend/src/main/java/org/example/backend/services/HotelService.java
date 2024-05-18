@@ -18,7 +18,7 @@ public class HotelService {
     }
 
     public List<HotelJPA> calculateDistance(double userLatitude, double userLongitude, int radius) {
-        final int R = 6371; // raza pamantului ( gasit pe net :D )
+        final int R = 6371;
         return hotelRepository.findAll().stream()
                 .filter(hotel -> {
                     double latDistance = Math.toRadians(hotel.getLatitude() - userLatitude);
